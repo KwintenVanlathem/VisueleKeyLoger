@@ -1,0 +1,30 @@
+test camera poorten met: ""python3 testcam.py""
+	indien dit programma niet werkt:
+	  * USB bus bandwith overload: probeer de cameras op twee uiteenliggende usb poorten in te pluggen (vb 1 in frontIO en 1 in backIO)
+	  * kan camerapoort niet openen: ""ls -ltrh /dev/video*"" pas poorten in programma aan
+	  * top en side omgedraaid: pas poorten in programma aan
+	(indien poorten in dit programma aangepast: pas deze ook aan in "neemvidop.py")
+
+video maken: ""python3 neemvidop.py""
+	progress bar toont hoeveel frames en gemmiddeld fps van opname (pas eventueel fps aan in "neemvidop.py" om video realistisch af te spelen)
+	80 frames om zelf te kijken of video er goed uit ziet, daarna max 10 000 frames (per camera) om video op te nemen
+	opname stoppen met letter Q (aanpasbaar in file)
+	na opname kan video bekeken worden in folder "vid"
+	indien goede opname, ""cp -r vid video1"" (bestemmingsfolder naar keuze)
+
+main programma: ""python3 main.py video"" (video is voorbeeld)
+
+beperkte versie main programma: ""python3 basic.py video"" (video is voorbeeld)
+	main maar dan gebruik makend van tussenstap bestanden ipv deze ook nog aan te maken
+	(tekenen bounding boxes, video omdraaien ...)
+
+Hulp programmas:
+	hsvsegment.py: sliders om een hsv masker te bepalen voor kleursegmentatie
+	""python3 hsvsegment.py video/side.mp4 60"" (video/side.mp4 is video, 60 is het frame waarop gewerkt word)
+
+Gebruikte imports:
+	cv2: OpenCV
+	tqdm: progress bar
+	time: sleep functie
+	sys: oproep argumenten inlezen
+	numpy: matrices aanmaken voor lege maskers, erosie/dilatie kernels, segmentatie grenzen
